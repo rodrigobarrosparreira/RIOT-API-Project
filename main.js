@@ -7,7 +7,7 @@ const master = {
             champion_list: [],
             version: null,
             splash_url: null,
-            masteryLevel: null
+            masteryImage: null
             
             
         }
@@ -46,9 +46,14 @@ const master = {
             const champion = this.champion_list.find(champion => champion.key === id.toString());
             if(champion){
                 this.splashUrl = "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/"+champion.id+"_0.jpg";
+                
                 return champion.name;
             }
             return "Unknown";
+        },
+
+        getMasteryImage(level){
+            return "images/Mastery_Level_"+level+".webp"
         }
         
     },
@@ -59,11 +64,7 @@ const master = {
                 splashUrl: this.splashUrl
             }));
         },
-        level(){
-            
-            this.masteryLevel = "test"
-            
-        }
+        
         
     }
 

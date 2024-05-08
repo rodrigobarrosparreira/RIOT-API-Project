@@ -47,7 +47,7 @@
             <section class = "display">
                 <div v-for="(champion, index) in championNames" :key="index" class = "card">
                     <img :src="champion.splashUrl" alt="" class="splash">
-                    <img src="images/Mastery_Level_7_Flair.webp" alt="" class="mastery_img">
+                    <img :src="getMasteryImage(masteryData[index].championLevel)" alt="" class="mastery_img">
                     <span>{{champion.championName}}</span>
                     <span> {{masteryData[index].championLevel}} </span>
                 </div>
