@@ -6,7 +6,8 @@ const master = {
             masteryData: [],
             champion_list: [],
             version: null,
-            splash_url: null
+            splash_url: null,
+            masteryLevel: null
             
             
         }
@@ -57,7 +58,13 @@ const master = {
                 championName: this.idToChampionName(entry.championId),
                 splashUrl: this.splashUrl
             }));
+        },
+        level(){
+            
+            this.masteryLevel = "test"
+            
         }
+        
     }
 
 };
