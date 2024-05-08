@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Masteries</title>
+</head>
+<body>
+    <div id="app">
+
+        <nav>
+            <input name="search"  type="text">
+            <h1></h1>
+        </nav>
+    
+        <main>
+            <div class="filter">
+                <input name="champion" type="text">
+                <div class="dropdown">
+                    <div class="level">
+                        <img src="images/Mastery_Level_1.webp" alt="">
+                        <img src="images/Mastery_Level_2_Flair.webp" alt="">
+                        <img src="images/Mastery_Level_3_Flair.webp" alt="">
+                        <img src="images/Mastery_Level_4_Flair.webp" alt="">
+                        <img src="images/Mastery_Level_5_Flair.webp" alt="">
+                        <img src="images/Mastery_Level_6_Flair.webp" alt="">
+                        <img src="images/Mastery_Level_7_Flair.webp" alt="">
+                    </div>
+                    <div class="role">
+                        <img src="images/Position_Challenger-Top.png" alt="">
+                        <img src="images/Position_Challenger-Jungle.png" alt="">
+                        <img src="images/Position_Challenger-Mid.png" alt="">
+                        <img src="images/Position_Challenger-Bot.png" alt="">
+                        <img src="images/Position_Challenger-Support.png" alt="">
+                    </div>
+                    
+                </div>
+    
+                <div class="active-filters">
+    
+                </div>
+    
+            </div>
+
+            <section class = "display">
+                <div v-for="(champion, index) in championNames" :key="index" class = "card">
+                    <img :src="champion.splashUrl" alt="" class="splash">
+                    <img src="images/Mastery_Level_7_Flair.webp" alt="" class="mastery_img">
+                    <span>{{champion.championName}}</span>
+                </div>
+                
+            </section>
+
+        </main>
+    </div>
+    
+
+
+
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="main.js"></script>
+
+
+</body>
+</html>

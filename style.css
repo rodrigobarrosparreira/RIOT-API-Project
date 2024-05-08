@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    background-color: #b68cb8;
+  
+    padding: 10px 15px 10px 15px;
+    
+}
+
+.dropdown{
+    
+    transition: 0.5s;
+}
+
+
+
+.level{
+    display: flex;
+    
+}
+
+.level img{
+    width: 50px;
+    transition: 0.2s;
+    opacity: 0.5;
+    
+}
+
+.level img:hover{
+    opacity: 1;
+}
+
+
+
+.role{
+    display: flex;
+    
+}
+
+.role img{
+    width: 30px;
+    padding: 0px 10px;
+    transition: 0.2s;
+    opacity: 0.5;
+    
+}
+
+.role img:hover{
+    opacity: 1;
+}
+
+
+nav input{
+    border-radius: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.selected{
+    background-color: bisque;
+}
+
+
+.display{
+    
+    display: flex;
+    /*flex-direction: column;*/
+    margin: 15px 15px;
+    flex-wrap: wrap;
+    
+}
+
+main{
+    background-color:#2B2D42;
+}
+
+.card{
+    
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    padding-left: 30px;
+    padding-right: 30px;
+    
+}
+
+.splash{
+    width: 150px;
+}
+
+.card span{
+    text-align: center;
+    color: aliceblue;
+    position: relative;
+    top: -30px;
+}
+
+.mastery_img{
+    width: 50px;
+    position: relative;
+    left: 50px;
+    top: -30px;
+}
+
+
+.filter input{
+    float: right;
+    margin: 10px;
+    border-radius: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
