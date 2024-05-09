@@ -7,7 +7,9 @@ const master = {
             champion_list: [],
             version: null,
             splash_url: null,
-            masteryImage: null
+            masteryImage: null,
+            activeFilter: null,
+            playerNick: null
             
             
         }
@@ -16,10 +18,11 @@ const master = {
         
     },
     mounted(){
-        this.fetchData();
+        //this.fetchData();
 
     },
     methods:{
+        
         async fetchData(){
             //get current version (patch) of game:
             let version = await fetch("https://ddragon.leagueoflegends.com/api/versions.json");
@@ -28,8 +31,7 @@ const master = {
 
             //get the mastery information from api
             
-            this.masteryData = await getPlayerMasteries();
-            
+            this.masteryData = await getPlayerMasteries(this.playerNick);
             //gets the list of all champions and IDs (to be used on function idToChampionName())
             let champ_list = await fetch("https://ddragon.leagueoflegends.com/cdn/"+ version +"/data/en_US/champion.json");
             let list = await champ_list.json();
@@ -54,7 +56,33 @@ const master = {
 
         getMasteryImage(level){
             return "images/Mastery_Level_"+level+".webp"
-        }
+        },
+
+        progressBar(points, pointsToNextLvl){
+            return points / (points + pointsToNextLvl)*100 + "%";
+        },
+        filter(lvl){
+            if(this.activeFilter === lvl){
+                this.activeFilter = null;
+            }else{
+                this.activeFilter = lvl;
+            }
+        },
+        getUserNick(event){
+            if(event.keyCode === 13){
+                let inputElement = document.getElementById('search');
+                let inputValue = inputElement.value;
+                this.playerNick = inputValue;
+                this. playerNick = this.playerNick.replace('#', '/');
+                if(this.playerNick != null){
+                    this.fetchData();
+                }
+            }
+        },
+        
+        
+        
+
         
     },
     computed:{
@@ -72,18 +100,17 @@ const master = {
 
 
 
-async function getPuuid(){
-    let response = await fetch("https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/lokkolokko/107?api_key=RGAPI-2e36f882-ef04-48d7-9dcb-77445e7c3881");
-    let data = await response.json();
-    return data.puuid;
-}
 
 
-async function getPlayerMasteries(){
-
-    let response = await fetch("https://br1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/" + await getPuuid() + "?api_key=RGAPI-2e36f882-ef04-48d7-9dcb-77445e7c3881")
+async function getPlayerMasteries(nick){
+    let response = await fetch("https://br1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/" + await getPuuid(nick) + "?api_key=RGAPI-2e36f882-ef04-48d7-9dcb-77445e7c3881");
     let data = await response.json();
     return(data);
+}
+async function getPuuid(nick){
+    let response = await fetch("https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/"+ nick +"?api_key=RGAPI-2e36f882-ef04-48d7-9dcb-77445e7c3881");
+    let data = await response.json();
+    return data.puuid;
 }
 
 

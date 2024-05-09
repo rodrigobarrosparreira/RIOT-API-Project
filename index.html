@@ -11,7 +11,7 @@
     <div id="app">
 
         <nav>
-            <input name="search"  type="text">
+            <input id="search"  type="text" @keydown.enter="getUserNick">
             <h1></h1>
         </nav>
     
@@ -20,13 +20,13 @@
                 <input name="champion" type="text">
                 <div class="dropdown">
                     <div class="level">
-                        <img src="images/Mastery_Level_1.webp" alt="">
-                        <img src="images/Mastery_Level_2.webp" alt="">
-                        <img src="images/Mastery_Level_3.webp" alt="">
-                        <img src="images/Mastery_Level_4.webp" alt="">
-                        <img src="images/Mastery_Level_5.webp" alt="">
-                        <img src="images/Mastery_Level_6.webp" alt="">
-                        <img src="images/Mastery_Level_7.webp" alt="">
+                        <img @click="filter(1)" src="images/Mastery_Level_1.webp" alt="">
+                        <img @click="filter(2)" src="images/Mastery_Level_2.webp" alt="">
+                        <img @click="filter(3)" src="images/Mastery_Level_3.webp" alt="">
+                        <img @click="filter(4)" src="images/Mastery_Level_4.webp" alt="">
+                        <img @click="filter(5)" src="images/Mastery_Level_5.webp" alt="">
+                        <img @click="filter(6)" src="images/Mastery_Level_6.webp" alt="">
+                        <img @click="filter(7)" src="images/Mastery_Level_7.webp" alt="">
                     </div>
                     <div class="role">
                         <img src="images/Position_Challenger-Top.png" alt="">
@@ -45,11 +45,16 @@
             </div>
 
             <section class = "display">
-                <div v-for="(champion, index) in championNames" :key="index" class = "card">
+                <div v-for="(champion, index) in championNames" :key="index" v-show="masteryData[index].championLevel === activeFilter || activeFilter === null" class = "card">
                     <img :src="champion.splashUrl" alt="" class="splash">
                     <img :src="getMasteryImage(masteryData[index].championLevel)" alt="" class="mastery_img">
                     <span>{{champion.championName}}</span>
                     <span> {{masteryData[index].championLevel}} </span>
+                    <div class="container">
+                        <div class="progress" :style="{width: progressBar(masteryData[index].championPoints, masteryData[index].championPointsUntilNextLevel)}">
+
+                        </div>
+                    </div>
                 </div>
                 
             </section>
