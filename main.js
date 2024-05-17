@@ -73,7 +73,7 @@ const master = {
                 let inputElement = document.getElementById('search');
                 let inputValue = inputElement.value;
                 this.playerNick = inputValue;
-                this. playerNick = this.playerNick.replace('#', '/');
+                this.playerNick = this.playerNick.replace('#', '/');
                 if(this.playerNick != null){
                     this.fetchData();
                 }
@@ -103,14 +103,11 @@ const master = {
 
 
 async function getPlayerMasteries(nick){
-    let response = await fetch("https://br1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/" + await getPuuid(nick) + "?api_key=RGAPI-2e36f882-ef04-48d7-9dcb-77445e7c3881");
+    
+    let response = await fetch('https://1n03mcim6h.execute-api.us-east-1.amazonaws.com/dev/MyApiFunction?param1='+nick);
+    //console.log(await fetch('https://1n03mcim6h.execute-api.us-east-1.amazonaws.com/dev/MyApiFunction?param1='+ await getPuuid(nick)));
     let data = await response.json();
     return(data);
-}
-async function getPuuid(nick){
-    let response = await fetch("https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/"+ nick +"?api_key=RGAPI-2e36f882-ef04-48d7-9dcb-77445e7c3881");
-    let data = await response.json();
-    return data.puuid;
 }
 
 
