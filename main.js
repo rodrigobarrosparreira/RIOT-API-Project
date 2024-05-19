@@ -55,7 +55,11 @@ const master = {
         },
 
         getMasteryImage(level){
-            return "images/Mastery_Level_"+level+".webp"
+            if(level<10){
+                return "images/NewMastery_Level_"+level+"_Crest.webp"
+            }else if(level>=10){
+                return "images/NewMastery_Level_10_Crest.webp"
+            }
         },
 
         progressBar(points, pointsToNextLvl){
@@ -82,7 +86,7 @@ const master = {
         
         
         
-
+        
         
     },
     computed:{

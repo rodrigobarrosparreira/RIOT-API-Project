@@ -20,13 +20,16 @@
                 <input name="champion" type="text">
                 <div class="dropdown">
                     <div class="level">
-                        <img @click="filter(1)" src="images/Mastery_Level_1.webp" alt="">
-                        <img @click="filter(2)" src="images/Mastery_Level_2.webp" alt="">
-                        <img @click="filter(3)" src="images/Mastery_Level_3.webp" alt="">
-                        <img @click="filter(4)" src="images/Mastery_Level_4.webp" alt="">
-                        <img @click="filter(5)" src="images/Mastery_Level_5.webp" alt="">
-                        <img @click="filter(6)" src="images/Mastery_Level_6.webp" alt="">
-                        <img @click="filter(7)" src="images/Mastery_Level_7.webp" alt="">
+                        <img @click="filter(1)" src="images/NewMastery_Level_1_Crest.webp" alt="">
+                        <img @click="filter(2)" src="images/NewMastery_Level_2_Crest.webp" alt="">
+                        <img @click="filter(3)" src="images/NewMastery_Level_3_Crest.webp" alt="">
+                        <img @click="filter(4)" src="images/NewMastery_Level_4_Crest.webp" alt="">
+                        <img @click="filter(5)" src="images/NewMastery_Level_5_Crest.webp" alt="">
+                        <img @click="filter(6)" src="images/NewMastery_Level_6_Crest.webp" alt="">
+                        <img @click="filter(7)" src="images/NewMastery_Level_7_Crest.webp" alt="">
+                        <img @click="filter(8)" src="images/NewMastery_Level_8_Crest.webp" alt="">
+                        <img @click="filter(9)" src="images/NewMastery_Level_9_Crest.webp" alt="">
+                        <img @click="filter(10)" src="images/NewMastery_Level_10_Crest.webp" alt="">
                     </div>
                     <div class="role">
                         <img src="images/Position_Challenger-Top.png" alt="">
@@ -45,7 +48,7 @@
             </div>
 
             <section class = "display">
-                <div v-for="(champion, index) in championNames" :key="index" v-show="masteryData[index].championLevel === activeFilter || activeFilter === null" class = "card">
+                <div v-for="(champion, index) in championNames" :key="index" v-show="masteryData[index].championLevel === activeFilter || activeFilter === null || (activeFilter === 10 && masteryData[index].championLevel >= 10)" class = "card">
                     <img :src="champion.splashUrl" alt="" class="splash">
                     <img :src="getMasteryImage(masteryData[index].championLevel)" alt="" class="mastery_img">
                     <span>{{champion.championName}}</span>
