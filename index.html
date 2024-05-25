@@ -17,7 +17,7 @@
     
         <main>
             <div class="filter">
-                <input name="champion" type="text">
+                <input type="text" v-model="searchQuery" placeholder="Search champion..." @input="search-champion">
                 <div class="dropdown">
                     <div class="level">
                         <img @click="filter(1)" src="images/NewMastery_Level_1_Crest.webp" alt="">
@@ -48,11 +48,11 @@
             </div>
 
             <section class = "display">
-                <div v-for="(champion, index) in championNames" :key="index" v-show="masteryData[index].championLevel === activeFilter || activeFilter === null || (activeFilter === 10 && masteryData[index].championLevel >= 10)" class = "card">
+                <div v-for="(champion, index) in championsData" :key="index" v-show="champion.championLevel === activeFilter || activeFilter === null || (activeFilter === 10 && champion.championLevel >= 10)" class = "card">
                     <img :src="champion.splashUrl" alt="" class="splash">
-                    <img :src="getMasteryImage(masteryData[index].championLevel)" alt="" class="mastery_img">
+                    <img :src="getMasteryImage(champion.championLevel)" alt="" class="mastery_img">
                     <span>{{champion.championName}}</span>
-                    <span> {{masteryData[index].championLevel}} </span>
+                    <span> {{champion.championLevel}} </span>
                     <div class="container">
                         <div class="progress" :style="{width: progressBar(masteryData[index].championPoints, masteryData[index].championPointsUntilNextLevel)}">
 

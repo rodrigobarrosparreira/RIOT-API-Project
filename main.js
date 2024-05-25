@@ -9,7 +9,8 @@ const master = {
             splash_url: null,
             masteryImage: null,
             activeFilter: null,
-            playerNick: null
+            playerNick: null,
+            searchQuery:''
             
             
         }
@@ -90,11 +91,15 @@ const master = {
         
     },
     computed:{
-        championNames(){
+        championsData(){
             return this.masteryData.map(entry => ({
                 championName: this.idToChampionName(entry.championId),
-                splashUrl: this.splashUrl
-            }));
+                splashUrl: this.splashUrl,
+                championLevel: entry.championLevel
+            }))
+            .filter(champion => {
+                return champion.championName.toLowerCase().includes(this.searchQuery.toLowerCase())
+            });
         },
         
         
